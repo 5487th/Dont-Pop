@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ct7ani0xdkqv7"]
+
+[ext_resource type="Texture2D" uid="uid://dg0gvyonjenxf" path="res://assets/sprites/triangle.png" id="1_s54fl"]
+[ext_resource type="Script" uid="uid://rxi0a2e6hk1u" path="res://scripts/game scene/hazard.gd" id="1_th3j2"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=828089282]
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+script = ExtResource("1_th3j2")
+vertical_length = 1110.0
+
+[node name="left" type="CollisionPolygon2D" parent="." unique_id=1681450545]
+polygon = PackedVector2Array(-977, -553, -55, 0, -977, 553)
+
+[node name="right" type="CollisionPolygon2D" parent="." unique_id=1299921338]
+polygon = PackedVector2Array(977, -553, 56, 0, 977, 553)
+
+[node name="visual" type="Node2D" parent="." unique_id=580319630]
+
+[node name="left" type="Sprite2D" parent="visual" unique_id=298598275]
+position = Vector2(-516, 0)
+scale = Vector2(1.8, 2.16)
+texture = ExtResource("1_s54fl")
+flip_h = true
+
+[node name="right" type="Sprite2D" parent="visual" unique_id=447319861]
+position = Vector2(516, 0)
+scale = Vector2(1.8, 2.16)
+texture = ExtResource("1_s54fl")

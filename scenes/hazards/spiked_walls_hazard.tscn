@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://brq0jld5v83fl"]
+
+[ext_resource type="Script" uid="uid://rxi0a2e6hk1u" path="res://scripts/game scene/hazard.gd" id="1_62g37"]
+[ext_resource type="Texture2D" uid="uid://dhpu257q65c31" path="res://assets/sprites/square.png" id="2_jq8df"]
+[ext_resource type="Texture2D" uid="uid://dg0gvyonjenxf" path="res://assets/sprites/triangle.png" id="3_08tx5"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=2009339824]
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+script = ExtResource("1_62g37")
+vertical_length = 1365.0
+
+[node name="left" type="CollisionPolygon2D" parent="." unique_id=1349729217]
+polygon = PackedVector2Array(-960, -540, -960, 568, -960, 696, -703, 568, -589, 512, -703, 457, -588, 402, -704, 346, -588, 290, -703, 235, -588, 178, -705, 123, -588, 67, -702, 13, -589, -45, -703, -99, -586, -153, -704, -209, -587, -265, -701, -318, -589, -373, -704, -429, -588, -484, -704, -540, -960, -668)
+
+[node name="right" type="CollisionPolygon2D" parent="." unique_id=1860621016]
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-960, -540, -960, 568, -960, 696, -703, 568, -589, 512, -703, 457, -588, 402, -704, 346, -588, 290, -703, 235, -588, 178, -705, 123, -588, 67, -702, 13, -589, -45, -703, -99, -586, -153, -704, -209, -587, -265, -701, -318, -589, -373, -704, -429, -588, -484, -704, -540, -960, -668)
+
+[node name="visual" type="Node2D" parent="." unique_id=1237171968]
+
+[node name="spiked wall" type="Sprite2D" parent="visual" unique_id=1812905497]
+position = Vector2(-832, 13.999977)
+scale = Vector2(0.50000006, 2.1640625)
+texture = ExtResource("2_jq8df")
+
+[node name="spike 1" type="Sprite2D" parent="visual/spiked wall" unique_id=1912396364]
+position = Vector2(370.455, -230.289)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 2" type="Sprite2D" parent="visual/spiked wall" unique_id=1027141981]
+position = Vector2(369.99988, -178.8303)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 3" type="Sprite2D" parent="visual/spiked wall" unique_id=370471380]
+position = Vector2(369.99988, -128.4621)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 4" type="Sprite2D" parent="visual/spiked wall" unique_id=2077806260]
+position = Vector2(369.99988, -77.16966)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 5" type="Sprite2D" parent="visual/spiked wall" unique_id=496834241]
+position = Vector2(369.99988, -26.801434)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 6" type="Sprite2D" parent="visual/spiked wall" unique_id=1189387198]
+position = Vector2(369.99988, 24.490986)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 7" type="Sprite2D" parent="visual/spiked wall" unique_id=608581039]
+position = Vector2(369.99988, 76.24549)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 8" type="Sprite2D" parent="visual/spiked wall" unique_id=111390885]
+position = Vector2(369.99988, 127.53794)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 9" type="Sprite2D" parent="visual/spiked wall" unique_id=1858188600]
+position = Vector2(369.99988, 179.29247)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 10" type="Sprite2D" parent="visual/spiked wall" unique_id=1933476046]
+position = Vector2(369.99988, 230.12276)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 11" type="Sprite2D" parent="visual/spiked wall" unique_id=33173954]
+position = Vector2(113.74994, 230.12277)
+scale = Vector2(1.4443358, 0.33211917)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 12" type="Sprite2D" parent="visual/spiked wall" unique_id=468807643]
+position = Vector2(113.75, -230.123)
+scale = Vector2(1.4443358, 0.33211917)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spiked wall2" type="Sprite2D" parent="visual" unique_id=812298342]
+position = Vector2(832, 14)
+scale = Vector2(-0.5, -2.164)
+texture = ExtResource("2_jq8df")
+
+[node name="spike 1" type="Sprite2D" parent="visual/spiked wall2" unique_id=299834661]
+position = Vector2(370.455, -230.289)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 2" type="Sprite2D" parent="visual/spiked wall2" unique_id=595101059]
+position = Vector2(369.99988, -178.8303)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 3" type="Sprite2D" parent="visual/spiked wall2" unique_id=1306722919]
+position = Vector2(369.99988, -128.4621)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 4" type="Sprite2D" parent="visual/spiked wall2" unique_id=1549930944]
+position = Vector2(369.99988, -77.16966)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 5" type="Sprite2D" parent="visual/spiked wall2" unique_id=1860104030]
+position = Vector2(369.99988, -26.801434)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 6" type="Sprite2D" parent="visual/spiked wall2" unique_id=791046991]
+position = Vector2(369.99988, 24.490986)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 7" type="Sprite2D" parent="visual/spiked wall2" unique_id=466865489]
+position = Vector2(369.99988, 76.24549)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 8" type="Sprite2D" parent="visual/spiked wall2" unique_id=134827886]
+position = Vector2(369.99988, 127.53794)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 9" type="Sprite2D" parent="visual/spiked wall2" unique_id=1249678370]
+position = Vector2(369.99988, 179.29247)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 10" type="Sprite2D" parent="visual/spiked wall2" unique_id=1038976328]
+position = Vector2(369.99988, 230.12276)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 11" type="Sprite2D" parent="visual/spiked wall2" unique_id=1775267779]
+position = Vector2(113.74994, 230.12277)
+scale = Vector2(1.4443358, 0.33211917)
+texture = ExtResource("3_08tx5")
+flip_h = true
+
+[node name="spike 12" type="Sprite2D" parent="visual/spiked wall2" unique_id=113810909]
+position = Vector2(113.75, -230.123)
+scale = Vector2(1.4443358, 0.33211917)
+texture = ExtResource("3_08tx5")
+flip_h = true

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cw7gr7wyhnq74"]
+
+[ext_resource type="Texture2D" uid="uid://dhpu257q65c31" path="res://assets/sprites/square.png" id="1_22knu"]
+
+[sub_resource type="GDScript" id="GDScript_rgl7y"]
+resource_name = "rotating cross"
+script/source = "extends Hazard
+
+@export var rotation_speed:float
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	move_hazard()
+	
+	rotate(deg_to_rad(rotation_speed * delta))
+"
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=966463197]
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+script = SubResource("GDScript_rgl7y")
+rotation_speed = 15.0
+vertical_length = 1800.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=367220277]
+polygon = PackedVector2Array(-51, -889, 51, -889, 51, -51, 892, -53, 889, 51, 51, 51, 53, 889, -49, 889, -51, 51, -889, 51, -889, -51, -51, -51)
+
+[node name="visual" type="Node2D" parent="." unique_id=2133159771]
+
+[node name="Sprite2D" type="Sprite2D" parent="visual" unique_id=1558852156]
+scale = Vector2(3.4726565, 0.2)
+texture = ExtResource("1_22knu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="visual" unique_id=1991905695]
+rotation = 1.5707964
+scale = Vector2(3.4726565, 0.2)
+texture = ExtResource("1_22knu")

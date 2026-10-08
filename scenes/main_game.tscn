@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://bgr083mxntcor"]
+
+[ext_resource type="Script" uid="uid://o1uupi3cmlcl" path="res://scripts/game scene/balloon_spawner.gd" id="1_s3esy"]
+[ext_resource type="PackedScene" uid="uid://cxoad16byx55r" path="res://scenes/balloon.tscn" id="2_72e8q"]
+[ext_resource type="Script" uid="uid://f0ro2vrpweqa" path="res://scripts/game scene/hazard_spawner.gd" id="3_d2op2"]
+[ext_resource type="PackedScene" uid="uid://brq0jld5v83fl" path="res://scenes/hazards/spiked_walls_hazard.tscn" id="4_0rdsr"]
+[ext_resource type="PackedScene" uid="uid://cw7gr7wyhnq74" path="res://scenes/hazards/rotating_cross_hazard.tscn" id="4_70vka"]
+[ext_resource type="PackedScene" uid="uid://bjupjfu1c30vk" path="res://scenes/hazards/rotating_spikes_hazard.tscn" id="5_2l77h"]
+[ext_resource type="Script" uid="uid://bvsei2vrjfkio" path="res://scripts/game scene/balloon_death_manager.gd" id="5_ipu61"]
+[ext_resource type="PackedScene" uid="uid://bwkhm46mkwf4k" path="res://scenes/hazards/zig_zag_path_hazard.tscn" id="6_nqdth"]
+[ext_resource type="PackedScene" uid="uid://b7prx7r553ly0" path="res://scenes/scene_transition.tscn" id="6_ygxny"]
+[ext_resource type="AudioStream" uid="uid://cnb2qmn8c8cco" path="res://assets/sfx/ballon-pop.mp3" id="7_wi4c7"]
+[ext_resource type="Script" uid="uid://034mmoqwu5vm" path="res://scripts/camera_screen_shake_effect.gd" id="8_70vka"]
+[ext_resource type="PackedScene" uid="uid://b17sn4wwx3o4u" path="res://scenes/hazards/expanding_wall_hazard.tscn" id="9_ikqpi"]
+[ext_resource type="PackedScene" uid="uid://hhg6jvblha0p" path="res://scenes/hazards/pulsing_square_hazard.tscn" id="9_wjob3"]
+[ext_resource type="PackedScene" uid="uid://dk5k76snqf7pb" path="res://scenes/hazards/pincer_corridor_hazard.tscn" id="10_8xp80"]
+[ext_resource type="PackedScene" uid="uid://ct7ani0xdkqv7" path="res://scenes/hazards/pincer_hazard.tscn" id="10_sp04v"]
+[ext_resource type="PackedScene" uid="uid://b1aq1q4rfkoxb" path="res://scenes/hazards/horizontal walls hazard.tscn" id="11_ihbck"]
+[ext_resource type="PackedScene" uid="uid://bsgjcjl21rk5x" path="res://scenes/hazards/wind_gust_with_spikes_hazard.tscn" id="11_sp04v"]
+[ext_resource type="PackedScene" uid="uid://c0jjo2a811r2s" path="res://scenes/hazards/grid_of_cubes_hazard.tscn" id="13_vnsdt"]
+[ext_resource type="PackedScene" uid="uid://bf8p4ehubyuw3" path="res://scenes/hazards/closing_walls_hazard.tscn" id="15_5luka"]
+
+[sub_resource type="Gradient" id="Gradient_ipu61"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.33725, 0.8, 0.94902, 1, 0.26392478, 0.24434635, 0.606865, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q7yvd"]
+gradient = SubResource("Gradient_ipu61")
+width = 256
+height = 256
+fill_from = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_72e8q"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rgl7y"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d2op2"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pitwt"]
+normal = Vector2(-1, 0)
+
+[node name="main" type="Node2D" unique_id=386450300]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1255736277]
+layer = -1
+
+[node name="background" type="TextureRect" parent="CanvasLayer" unique_id=1138545087]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_q7yvd")
+
+[node name="world boundary" type="StaticBody2D" parent="." unique_id=464351116]
+collision_layer = 2
+collision_mask = 4
+
+[node name="top" type="CollisionShape2D" parent="world boundary" unique_id=1509108891]
+position = Vector2(0, -540)
+shape = SubResource("WorldBoundaryShape2D_72e8q")
+
+[node name="bottom" type="CollisionShape2D" parent="world boundary" unique_id=82071042]
+position = Vector2(0, 540)
+shape = SubResource("WorldBoundaryShape2D_rgl7y")
+
+[node name="left" type="CollisionShape2D" parent="world boundary" unique_id=1881424460]
+position = Vector2(-960, 0)
+shape = SubResource("WorldBoundaryShape2D_d2op2")
+
+[node name="right" type="CollisionShape2D" parent="world boundary" unique_id=1292858612]
+position = Vector2(960, 0)
+shape = SubResource("WorldBoundaryShape2D_pitwt")
+
+[node name="balloon spawner" type="Node2D" parent="." unique_id=976219931]
+script = ExtResource("1_s3esy")
+balloon_scene = ExtResource("2_72e8q")
+
+[node name="Hazard_spawner" type="Node2D" parent="." unique_id=1213898632 node_paths=PackedStringArray("timer", "bottom_boundary")]
+position = Vector2(0, -540)
+script = ExtResource("3_d2op2")
+timer = NodePath("Timer")
+bottom_boundary = NodePath("bottom boundary")
+Hazard_spawn_interval = 2.0
+level1_hazards = Array[PackedScene]([ExtResource("4_0rdsr"), ExtResource("5_2l77h"), ExtResource("6_nqdth"), ExtResource("9_wjob3"), ExtResource("10_sp04v"), ExtResource("9_ikqpi"), ExtResource("4_70vka")])
+level2_hazards = Array[PackedScene]([ExtResource("10_sp04v"), ExtResource("9_wjob3"), ExtResource("4_70vka"), ExtResource("11_sp04v"), ExtResource("6_nqdth"), ExtResource("5_2l77h"), ExtResource("9_ikqpi"), ExtResource("15_5luka")])
+level3_hazards = Array[PackedScene]([ExtResource("9_ikqpi"), ExtResource("10_8xp80"), ExtResource("13_vnsdt"), ExtResource("11_ihbck"), ExtResource("11_sp04v"), ExtResource("4_70vka"), ExtResource("15_5luka"), ExtResource("9_wjob3"), ExtResource("6_nqdth")])
+
+[node name="Timer" type="Timer" parent="Hazard_spawner" unique_id=996783184]
+
+[node name="bottom boundary" type="Node2D" parent="Hazard_spawner" unique_id=1084550359]
+position = Vector2(0, 4000)
+
+[node name="balloon death manager" type="Node2D" parent="." unique_id=1117227750 node_paths=PackedStringArray("ballon_spawner", "transition", "death_sound_player", "camera")]
+script = ExtResource("5_ipu61")
+ballon_spawner = NodePath("../balloon spawner")
+transition = NodePath("scene transition")
+death_sound_player = NodePath("death sound player")
+camera = NodePath("../Camera2D")
+
+[node name="scene transition" parent="balloon death manager" unique_id=429413691 instance=ExtResource("6_ygxny")]
+
+[node name="cloud 5" parent="balloon death manager/scene transition" index="1" unique_id=59076211]
+position = Vector2(-363, 114)
+
+[node name="cloud 6" parent="balloon death manager/scene transition" index="2" unique_id=1176790874]
+position = Vector2(-343, -314)
+
+[node name="cloud 1" parent="balloon death manager/scene transition" index="3" unique_id=1279682879]
+position = Vector2(0, 0)
+
+[node name="cloud 2" parent="balloon death manager/scene transition" index="4" unique_id=124164635]
+position = Vector2(187, -465)
+
+[node name="cloud 3" parent="balloon death manager/scene transition" index="5" unique_id=1123446389]
+position = Vector2(550, 236)
+
+[node name="cloud 4" parent="balloon death manager/scene transition" index="6" unique_id=1745735194]
+position = Vector2(1161, -488)
+
+[node name="cloud 7" parent="balloon death manager/scene transition" index="7" unique_id=755250396]
+position = Vector2(1157, 33)
+
+[node name="cloud 8" parent="balloon death manager/scene transition" index="8" unique_id=1694017532]
+position = Vector2(-575, -249)
+
+[node name="death sound player" type="AudioStreamPlayer2D" parent="balloon death manager" unique_id=68027687]
+stream = ExtResource("7_wi4c7")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=980642173]
+script = ExtResource("8_70vka")
+shakeFade = 10.0
+
+[editable path="balloon death manager/scene transition"]

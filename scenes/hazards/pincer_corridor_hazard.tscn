@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dk5k76snqf7pb"]
+
+[ext_resource type="Script" uid="uid://rxi0a2e6hk1u" path="res://scripts/game scene/hazard.gd" id="1_ftqso"]
+[ext_resource type="Texture2D" uid="uid://dg0gvyonjenxf" path="res://assets/sprites/triangle.png" id="1_yhyc6"]
+[ext_resource type="Texture2D" uid="uid://dhpu257q65c31" path="res://assets/sprites/square.png" id="2_ftqso"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=1184552323]
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+script = ExtResource("1_ftqso")
+vertical_length = 4504.0
+
+[node name="left" type="CollisionPolygon2D" parent="." unique_id=1552369530]
+position = Vector2(-12.800049, 1600)
+polygon = PackedVector2Array(-986, -3782, -1917, -2590, -1919, -564, -986, 687, -56, -567, -55, -2593)
+
+[node name="right" type="CollisionPolygon2D" parent="." unique_id=1001842554]
+position = Vector2(-12.800049, 1600)
+polygon = PackedVector2Array(986, -3783, 55, -2591, 54, -560, 986, 687, 1919, -564, 1921, -2591)
+
+[node name="visual" type="Node2D" parent="." unique_id=1242531902]
+position = Vector2(-12.800049, 1600)
+
+[node name="left" type="Node2D" parent="visual" unique_id=2023293698]
+
+[node name="entrance left" type="Sprite2D" parent="visual/left" unique_id=158009311]
+z_index = 5
+position = Vector2(-986.00006, 60)
+rotation = -1.5707964
+scale = Vector2(2.45, 3.641)
+texture = ExtResource("1_yhyc6")
+
+[node name="tunnel left" type="Sprite2D" parent="visual/left" unique_id=163968901]
+z_index = 5
+position = Vector2(-986.7499, -1579)
+scale = Vector2(3.6416016, 3.9550781)
+texture = ExtResource("2_ftqso")
+
+[node name="exit left" type="Sprite2D" parent="visual/left" unique_id=1281769917]
+z_index = 5
+position = Vector2(-985.89343, -3183.3672)
+rotation = -1.5707964
+scale = Vector2(2.3401852, 3.6358507)
+texture = ExtResource("1_yhyc6")
+flip_h = true
+
+[node name="right" type="Node2D" parent="visual" unique_id=1213325359]
+scale = Vector2(-1, 1)
+
+[node name="entrance left" type="Sprite2D" parent="visual/right" unique_id=11532136]
+z_index = 5
+position = Vector2(-986.00006, 60)
+rotation = -1.5707964
+scale = Vector2(2.45, 3.641)
+texture = ExtResource("1_yhyc6")
+
+[node name="tunnel left" type="Sprite2D" parent="visual/right" unique_id=1651716314]
+z_index = 5
+position = Vector2(-986.7499, -1579)
+scale = Vector2(3.6416016, 3.9550781)
+texture = ExtResource("2_ftqso")
+
+[node name="exit left" type="Sprite2D" parent="visual/right" unique_id=201539927]
+z_index = 5
+position = Vector2(-985.89343, -3183.3672)
+rotation = -1.5707964
+scale = Vector2(2.3401852, 3.6358507)
+texture = ExtResource("1_yhyc6")
+flip_h = true

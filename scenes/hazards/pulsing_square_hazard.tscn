@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://hhg6jvblha0p"]
+
+[ext_resource type="Texture2D" uid="uid://dhpu257q65c31" path="res://assets/sprites/square.png" id="1_4ibsf"]
+
+[sub_resource type="GDScript" id="GDScript_pitwt"]
+resource_name = "pulsing square hazard"
+script/source = "extends Hazard
+
+
+@export var rotation_speed:float = 15
+@export var scale_change_speed:float = 0.1
+
+@export var scale_range:Vector2 = Vector2(0.8, 1.6)
+
+var scaling_up:bool
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	move_hazard()
+	
+	rotate(deg_to_rad(rotation_speed * delta))
+	
+	if scale.x == scale_range.x:
+		scaling_up = true
+	elif scale.x == scale_range.y:
+		scaling_up = false
+	
+	if scaling_up:
+		scale = scale.move_toward(Vector2(scale_range.y, scale_range.y), scale_change_speed)
+	else:
+		scale = scale.move_toward(Vector2(scale_range.x, scale_range.x), scale_change_speed)
+		
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgl7y"]
+size = Vector2(512, 512)
+
+[node name="pulsing square hazard" type="AnimatableBody2D" unique_id=2121383289]
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+script = SubResource("GDScript_pitwt")
+scale_change_speed = 0.01
+scale_range = Vector2(0.8, 2.5)
+vertical_length = 1820.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1389810612]
+shape = SubResource("RectangleShape2D_rgl7y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2119656845]
+texture = ExtResource("1_4ibsf")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1503552645]

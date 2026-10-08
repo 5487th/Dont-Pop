@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://bjupjfu1c30vk"]
+
+[ext_resource type="Texture2D" uid="uid://dqvd5ee53ddt6" path="res://assets/sprites/circle.png" id="2_gf1pi"]
+[ext_resource type="Texture2D" uid="uid://dg0gvyonjenxf" path="res://assets/sprites/triangle.png" id="3_gf1pi"]
+
+[sub_resource type="GDScript" id="GDScript_gf1pi"]
+resource_name = "rotating_spikes_hazard"
+script/source = "extends Hazard
+
+@export var rotation_speed:float = 30
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	move_hazard()
+	
+	rotate(deg_to_rad(rotation_speed * delta))
+"
+
+[node name="rotating spikes hazard" type="AnimatableBody2D" unique_id=1340061617]
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+script = SubResource("GDScript_gf1pi")
+vertical_length = 800.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=475553072]
+polygon = PackedVector2Array(-324, -151, -219, -153, -251, -252, -155, -220, -150, -323, -56, -249, 0, -356, 56, -247, 150, -323, 153, -219, 252, -252, 219, -153, 323, -151, 246, -56, 356, 0, 248, 55, 323, 150, 219, 153, 252, 252, 153, 219, 150, 323, 55, 248, 0, 356, -55, 248, -151, 324, -153, 219, -252, 252, -219, 153, -322, 150, -248, 55, -356, 0, -249, -56)
+
+[node name="visual" type="Node2D" parent="." unique_id=1170229405]
+
+[node name="circle" type="Sprite2D" parent="visual" unique_id=1432739015]
+texture = ExtResource("2_gf1pi")
+
+[node name="+" type="Node2D" parent="visual/circle" unique_id=586368046]
+scale = Vector2(0.8, 0.8)
+
+[node name="top" type="Sprite2D" parent="visual/circle/+" unique_id=846137679]
+position = Vector2(0, -317)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+
+[node name="bottom" type="Sprite2D" parent="visual/circle/+" unique_id=1137618233]
+position = Vector2(0, 317)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+flip_h = true
+
+[node name="left" type="Sprite2D" parent="visual/circle/+" unique_id=1848971019]
+position = Vector2(-317, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+
+[node name="right" type="Sprite2D" parent="visual/circle/+" unique_id=125328311]
+position = Vector2(317, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+flip_h = true
+
+[node name="x" type="Node2D" parent="visual/circle" unique_id=467375886]
+rotation = 0.7853982
+scale = Vector2(0.8, 0.8)
+
+[node name="top2" type="Sprite2D" parent="visual/circle/x" unique_id=652147843]
+position = Vector2(0, -317)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+
+[node name="bottom2" type="Sprite2D" parent="visual/circle/x" unique_id=1172945920]
+position = Vector2(0, 317)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+flip_h = true
+
+[node name="left2" type="Sprite2D" parent="visual/circle/x" unique_id=1054844392]
+position = Vector2(-317, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+
+[node name="right2" type="Sprite2D" parent="visual/circle/x" unique_id=1496903856]
+position = Vector2(317, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+flip_h = true
+
+[node name="+x" type="Node2D" parent="visual/circle" unique_id=1481646696]
+rotation = 0.43633232
+scale = Vector2(0.8, 0.8)
+
+[node name="top2" type="Sprite2D" parent="visual/circle/+x" unique_id=547366818]
+position = Vector2(0, -317)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+
+[node name="bottom2" type="Sprite2D" parent="visual/circle/+x" unique_id=1749763496]
+position = Vector2(0, 317)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+flip_h = true
+
+[node name="left2" type="Sprite2D" parent="visual/circle/+x" unique_id=1392800530]
+position = Vector2(-317, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+
+[node name="right2" type="Sprite2D" parent="visual/circle/+x" unique_id=1263454585]
+position = Vector2(317, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+flip_h = true
+
+[node name="x+" type="Node2D" parent="visual/circle" unique_id=1852610300]
+rotation = -0.43633232
+scale = Vector2(0.8, 0.8)
+
+[node name="top2" type="Sprite2D" parent="visual/circle/x+" unique_id=1971553985]
+position = Vector2(0, -317)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+
+[node name="bottom2" type="Sprite2D" parent="visual/circle/x+" unique_id=651814408]
+position = Vector2(0, 317)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+flip_h = true
+
+[node name="left2" type="Sprite2D" parent="visual/circle/x+" unique_id=1256824481]
+position = Vector2(-317, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+
+[node name="right2" type="Sprite2D" parent="visual/circle/x+" unique_id=2135542479]
+position = Vector2(317, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gf1pi")
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1860389849]

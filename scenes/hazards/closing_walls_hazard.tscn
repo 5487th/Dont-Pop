@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bf8p4ehubyuw3"]
+
+[ext_resource type="Texture2D" uid="uid://dhpu257q65c31" path="res://assets/sprites/square.png" id="1_wdpqw"]
+
+[sub_resource type="GDScript" id="GDScript_pitwt"]
+resource_name = "closing_walls_hazard"
+script/source = "extends Hazard
+
+@export var close_in_speed:float = 0.01
+
+@export var left_wall:AnimatableBody2D
+@export var right_wall:AnimatableBody2D
+
+@export var player_detector:Area2D
+
+var active:bool
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	player_detector.body_entered.connect(func(body): if body is BalloonMovementManager: active = true)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore(\"unused_parameter\")
+func _process(delta: float) -> void:
+	move_hazard()
+	
+	if active:
+		left_wall.position.x = move_toward(left_wall.position.x, 0, close_in_speed)
+		right_wall.position.x = move_toward(right_wall.position.x, 0, close_in_speed)
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgl7y"]
+size = Vector2(1009, 1081)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pitwt"]
+size = Vector2(1010, 1081)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bdpn"]
+size = Vector2(1921, 1081)
+
+[node name="closing walls hazard" type="Node2D" unique_id=678892604 node_paths=PackedStringArray("left_wall", "right_wall", "player_detector")]
+script = SubResource("GDScript_pitwt")
+close_in_speed = 1.5
+left_wall = NodePath("left wall")
+right_wall = NodePath("right wall")
+player_detector = NodePath("balloon detector")
+vertical_length = 1105.0
+
+[node name="left wall" type="AnimatableBody2D" parent="." unique_id=84340652]
+position = Vector2(-927, 0)
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+
+[node name="left" type="CollisionShape2D" parent="left wall" unique_id=141910231]
+position = Vector2(-504.5, 0.5)
+shape = SubResource("RectangleShape2D_rgl7y")
+
+[node name="left2" type="Sprite2D" parent="left wall" unique_id=1216749004]
+z_index = 5
+position = Vector2(-504.5, 0.49999714)
+scale = Vector2(1.9707031, 2.1113281)
+texture = ExtResource("1_wdpqw")
+
+[node name="right wall" type="AnimatableBody2D" parent="." unique_id=745068072]
+position = Vector2(916, 0)
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+
+[node name="right2" type="Sprite2D" parent="right wall" unique_id=2057161515]
+z_index = 5
+position = Vector2(505.00003, 0.5000024)
+scale = Vector2(1.9726564, 2.111328)
+texture = ExtResource("1_wdpqw")
+
+[node name="right" type="CollisionShape2D" parent="right wall" unique_id=925979289]
+position = Vector2(505, 0.5)
+shape = SubResource("RectangleShape2D_pitwt")
+
+[node name="balloon detector" type="Area2D" parent="." unique_id=226646797]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="balloon detector" unique_id=1776995875]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_4bdpn")

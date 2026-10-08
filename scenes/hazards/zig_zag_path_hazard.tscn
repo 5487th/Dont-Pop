@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bwkhm46mkwf4k"]
+
+[ext_resource type="Script" uid="uid://rxi0a2e6hk1u" path="res://scripts/game scene/hazard.gd" id="1_xsviv"]
+[ext_resource type="Texture2D" uid="uid://dg0gvyonjenxf" path="res://assets/sprites/triangle.png" id="2_a48gb"]
+
+[node name="zig zag path hazard" type="AnimatableBody2D" unique_id=76793578]
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+script = ExtResource("1_xsviv")
+vertical_length = 2200.0
+
+[node name="left" type="CollisionPolygon2D" parent="." unique_id=424068450]
+position = Vector2(6.800049, 550.69995)
+polygon = PackedVector2Array(-996, -1654, -996, 175, -1, -81, -977, -335, -976, -513, -1, -760, -977, -1016, -975, -1148, 0, -1397)
+
+[node name="right" type="CollisionPolygon2D" parent="." unique_id=1672354217]
+position = Vector2(21.700048, 550.69995)
+polygon = PackedVector2Array(963, -1286, 964, 543, -29, 287, 956, 32, 956, -140, -29, -395, 958, -651, 958, -775, -29, -1030)
+
+[node name="visual" type="Node2D" parent="." unique_id=2052182033]
+
+[node name="left" type="Node2D" parent="visual" unique_id=1682431753]
+z_index = 5
+position = Vector2(-989.19995, -1096.3)
+
+[node name="spike 1" type="Sprite2D" parent="visual/left" unique_id=1214468848]
+z_index = 5
+position = Vector2(496.99997, 1566)
+scale = Vector2(1.9414063, 1)
+texture = ExtResource("2_a48gb")
+flip_h = true
+
+[node name="spike 2" type="Sprite2D" parent="visual/left" unique_id=2112117451]
+z_index = 5
+position = Vector2(496.99997, 884.0001)
+scale = Vector2(1.9414063, 1)
+texture = ExtResource("2_a48gb")
+flip_h = true
+
+[node name="spike 3" type="Sprite2D" parent="visual/left" unique_id=728917068]
+z_index = 5
+position = Vector2(496.99997, 249)
+scale = Vector2(1.9414063, 1)
+texture = ExtResource("2_a48gb")
+flip_h = true
+
+[node name="right" type="Node2D" parent="visual" unique_id=1171999338]
+z_index = 5
+position = Vector2(986.80005, -728.30005)
+
+[node name="spike 1" type="Sprite2D" parent="visual/right" unique_id=1709973220]
+z_index = 5
+position = Vector2(-493.99997, 1566)
+scale = Vector2(1.9414063, 1)
+texture = ExtResource("2_a48gb")
+
+[node name="spike 2" type="Sprite2D" parent="visual/right" unique_id=1653282528]
+z_index = 5
+position = Vector2(-493.99997, 884.0001)
+scale = Vector2(1.9414063, 1)
+texture = ExtResource("2_a48gb")
+
+[node name="spike 3" type="Sprite2D" parent="visual/right" unique_id=1128946697]
+z_index = 5
+position = Vector2(-493.99997, 249)
+scale = Vector2(1.9414063, 1)
+texture = ExtResource("2_a48gb")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2119614109]

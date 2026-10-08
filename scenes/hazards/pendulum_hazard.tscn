@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bssvjeknlghku"]
+
+[ext_resource type="Texture2D" uid="uid://dqvd5ee53ddt6" path="res://assets/sprites/circle.png" id="1_47mfe"]
+[ext_resource type="Script" uid="uid://rxi0a2e6hk1u" path="res://scripts/game scene/hazard.gd" id="1_kx7n1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rgl7y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pitwt"]
+radius = 118.06778
+
+[node name="pendulum hazard" type="Node2D" unique_id=1764415213]
+script = ExtResource("1_kx7n1")
+vertical_length = 2000.0
+
+[node name="anchor" type="AnimatableBody2D" parent="." unique_id=920808921]
+position = Vector2(0, -357)
+rotation = 6.2831855
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="anchor" unique_id=238909961]
+shape = SubResource("CircleShape2D_rgl7y")
+
+[node name="Sprite2D" type="Sprite2D" parent="anchor" unique_id=1057815457]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_47mfe")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=486123017]
+position = Vector2(0, -357)
+rotation = 6.2831855
+node_a = NodePath("../anchor")
+node_b = NodePath("../arm")
+
+[node name="arm" type="RigidBody2D" parent="." unique_id=1012552744]
+position = Vector2(-251, -346)
+rotation = 6.2831855
+collision_layer = 8
+collision_mask = 2
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arm" unique_id=128094676]
+shape = SubResource("CircleShape2D_pitwt")
+
+[node name="Sprite2D" type="Sprite2D" parent="arm" unique_id=655539870]
+scale = Vector2(0.455, 0.455)
+texture = ExtResource("1_47mfe")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="." unique_id=1581507799]
+position = Vector2(0, -357)
+rotation = 6.2831855
+node_a = NodePath("../anchor")
+node_b = NodePath("../arm2")
+
+[node name="arm2" type="RigidBody2D" parent="." unique_id=746963065]
+position = Vector2(-573, -346)
+rotation = 6.2831855
+collision_layer = 8
+collision_mask = 2
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arm2" unique_id=1743420439]
+shape = SubResource("CircleShape2D_pitwt")
+
+[node name="Sprite2D" type="Sprite2D" parent="arm2" unique_id=1781965013]
+scale = Vector2(0.455, 0.455)
+texture = ExtResource("1_47mfe")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="." unique_id=1193182180]
+position = Vector2(0, -357)
+rotation = 6.2831855
+node_a = NodePath("../anchor")
+node_b = NodePath("../arm3")
+
+[node name="arm3" type="RigidBody2D" parent="." unique_id=534321670]
+position = Vector2(-892, -346)
+rotation = 6.2831855
+collision_layer = 8
+collision_mask = 2
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arm3" unique_id=1315115667]
+shape = SubResource("CircleShape2D_pitwt")
+
+[node name="Sprite2D" type="Sprite2D" parent="arm3" unique_id=1200095930]
+scale = Vector2(0.455, 0.455)
+texture = ExtResource("1_47mfe")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=777143149]

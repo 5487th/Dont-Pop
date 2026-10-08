@@ -1,0 +1,327 @@
+[gd_scene format=3 uid="uid://ies80cdcd7t1"]
+
+[ext_resource type="FontFile" uid="uid://bcp64d4s2si12" path="res://assets/fonts/Roboto-Regular.ttf" id="1_ve6ub"]
+[ext_resource type="Texture2D" uid="uid://b7eto8ijkcsh0" path="res://assets/sprites/white_balloon.png" id="2_wqf8q"]
+[ext_resource type="Texture2D" uid="uid://b1u0vcx3x31xp" path="res://assets/sprites/clouds/elongated_white_cloud_with_bulge.png" id="3_gbhqb"]
+[ext_resource type="Texture2D" uid="uid://bh3udk7rb8qnu" path="res://assets/sprites/clouds/medium_white_cloud.png" id="4_fgr7c"]
+[ext_resource type="PackedScene" uid="uid://b7prx7r553ly0" path="res://scenes/scene_transition.tscn" id="5_fgr7c"]
+[ext_resource type="AudioStream" uid="uid://cr74hmxjf0lhy" path="res://assets/sfx/click.mp3" id="6_ke0x7"]
+
+[sub_resource type="GDScript" id="GDScript_flqon"]
+resource_name = "replay menu"
+script/source = "extends Node2D
+
+@export var winner_tittle_display:Label
+@export var winner_balloon_display:Sprite2D
+@export var transition:SceneTransition
+
+@export var replay_button:TextureButton
+@export var main_menu_button:TextureButton
+
+@export var click_sound_effect_player:AudioStreamPlayer2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	transition.fade_out()
+	if BalloonInfo.winner == Balloon.BalloonNumber.Balloon_1:
+		winner_tittle_display.text = \"Balloon 1 wins!\"
+		winner_balloon_display.modulate = Balloon.get_color(BalloonInfo.balloon_color_1)
+	elif BalloonInfo.winner == Balloon.BalloonNumber.Balloon_2:
+		winner_balloon_display.modulate = Balloon.get_color(BalloonInfo.balloon_color_2)
+		winner_tittle_display.text = \"Balloon 2 wins!\"
+	
+	replay_button.pressed.connect(replay_pressed)
+	main_menu_button.pressed.connect(main_menu_pressed)
+
+func replay_pressed():
+	click_sound_effect_player.play()
+	transition.fade_in()
+	if transition.animation_player.is_playing():
+		await transition.animation_player.animation_finished
+	SceneManager.change_to_main_game_scene()
+
+func main_menu_pressed():
+	click_sound_effect_player.play()
+	transition.fade_in()
+	if transition.animation_player.is_playing():
+		await transition.animation_player.animation_finished
+	SceneManager.change_to_main_menu_scene()
+"
+
+[sub_resource type="Gradient" id="Gradient_vue75"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.33725, 0.8, 0.94902, 1, 0.26392478, 0.24434635, 0.606865, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ow5lg"]
+gradient = SubResource("Gradient_vue75")
+width = 256
+height = 256
+fill_from = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pitwt"]
+font = ExtResource("1_ve6ub")
+font_size = 96
+outline_size = 10
+
+[sub_resource type="Gradient" id="Gradient_gbhqb"]
+offsets = PackedFloat32Array(0.0121951215)
+colors = PackedColorArray(1, 1, 1, 0.22352941)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fgr7c"]
+gradient = SubResource("Gradient_gbhqb")
+width = 539
+height = 128
+
+[sub_resource type="Gradient" id="Gradient_ke0x7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.76862746, 0.76862746, 0.76862746, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_roxso"]
+gradient = SubResource("Gradient_ke0x7")
+width = 539
+height = 128
+fill_to = Vector2(0.99415207, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_43ogv"]
+font = ExtResource("1_ve6ub")
+font_size = 96
+outline_size = 5
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="replay menu" type="Node2D" unique_id=1151414018 node_paths=PackedStringArray("winner_tittle_display", "winner_balloon_display", "transition", "replay_button", "main_menu_button", "click_sound_effect_player")]
+script = SubResource("GDScript_flqon")
+winner_tittle_display = NodePath("CanvasLayer/winner tittle display")
+winner_balloon_display = NodePath("CanvasLayer/winner balloon display")
+transition = NodePath("scene transition")
+replay_button = NodePath("CanvasLayer/buttons/replay button/button")
+main_menu_button = NodePath("CanvasLayer/buttons/main menu/button")
+click_sound_effect_player = NodePath("click sound effect player")
+
+[node name="background" type="CanvasLayer" parent="." unique_id=1920132711]
+layer = -1
+
+[node name="background" type="TextureRect" parent="background" unique_id=1562626662]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ow5lg")
+
+[node name="clouds" type="Control" parent="background" unique_id=790822711]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cloude_1" type="TextureRect" parent="background/clouds" unique_id=1495027407]
+layout_mode = 0
+offset_left = 371.99997
+offset_top = 236.99998
+offset_right = 2292.0
+offset_bottom = 877.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_gbhqb")
+
+[node name="cloude_2" type="TextureRect" parent="background/clouds" unique_id=544370344]
+layout_mode = 0
+offset_left = 1264.0
+offset_top = 278.0
+offset_right = 3184.0
+offset_bottom = 918.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_gbhqb")
+
+[node name="cloude_3" type="TextureRect" parent="background/clouds" unique_id=348736694]
+layout_mode = 0
+offset_left = -166.0
+offset_top = -56.0
+offset_right = 1754.0
+offset_bottom = 888.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_fgr7c")
+
+[node name="cloude_4" type="TextureRect" parent="background/clouds" unique_id=1198087823]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 405.0
+offset_right = 2088.0
+offset_bottom = 1349.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_fgr7c")
+flip_h = true
+
+[node name="cloude_6" type="TextureRect" parent="background/clouds" unique_id=390205628]
+layout_mode = 0
+offset_left = 1325.0
+offset_top = 118.0
+offset_right = 3245.0
+offset_bottom = 1062.0
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_fgr7c")
+flip_h = true
+
+[node name="cloude_7" type="TextureRect" parent="background/clouds" unique_id=709337442]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 687.0
+offset_right = 2062.0
+offset_bottom = 1631.0
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("4_fgr7c")
+flip_h = true
+
+[node name="cloude_5" type="TextureRect" parent="background/clouds" unique_id=1064403537]
+layout_mode = 0
+offset_left = -147.0
+offset_top = 727.00006
+offset_right = 1773.0
+offset_bottom = 1671.0
+scale = Vector2(0.5, 0.385)
+texture = ExtResource("3_gbhqb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=141515668]
+layer = -1
+
+[node name="winner tittle display" type="Label" parent="CanvasLayer" unique_id=1631045352]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -399.0
+offset_right = 326.0
+offset_bottom = -285.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Balloon 1 wins! "
+label_settings = SubResource("LabelSettings_pitwt")
+
+[node name="winner balloon display" type="Sprite2D" parent="CanvasLayer" unique_id=563222992]
+position = Vector2(930.99994, 588.50006)
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("2_wqf8q")
+
+[node name="buttons" type="VBoxContainer" parent="CanvasLayer" unique_id=845079088]
+offset_left = 1202.0
+offset_top = 670.0
+offset_right = 1724.0
+offset_bottom = 961.0
+theme_override_constants/separation = 15
+
+[node name="replay button" type="Control" parent="CanvasLayer/buttons" unique_id=141441657]
+custom_minimum_size = Vector2(547.35, 137.585)
+layout_mode = 2
+
+[node name="button outline" type="ColorRect" parent="CanvasLayer/buttons/replay button" unique_id=655237001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40868774, 0.6510586, 0.8755323, 1)
+
+[node name="button" type="TextureButton" parent="CanvasLayer/buttons/replay button" unique_id=2082361534]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("GradientTexture2D_fgr7c")
+texture_pressed = SubResource("GradientTexture2D_fgr7c")
+texture_hover = SubResource("GradientTexture2D_roxso")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="CanvasLayer/buttons/replay button/button" unique_id=1141357907]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "play again"
+label_settings = SubResource("LabelSettings_43ogv")
+horizontal_alignment = 1
+
+[node name="main menu" type="Control" parent="CanvasLayer/buttons" unique_id=2144625649]
+custom_minimum_size = Vector2(522, 138)
+layout_mode = 2
+
+[node name="button outline" type="ColorRect" parent="CanvasLayer/buttons/main menu" unique_id=502122437]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40868774, 0.6510586, 0.8755323, 1)
+
+[node name="button" type="TextureButton" parent="CanvasLayer/buttons/main menu" unique_id=895991823]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("GradientTexture2D_fgr7c")
+texture_pressed = SubResource("GradientTexture2D_fgr7c")
+texture_hover = SubResource("GradientTexture2D_roxso")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="CanvasLayer/buttons/main menu/button" unique_id=2076179155]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "main"
+label_settings = SubResource("LabelSettings_43ogv")
+horizontal_alignment = 1
+
+[node name="scene transition" parent="." unique_id=429413691 instance=ExtResource("5_fgr7c")]
+position = Vector2(960, 540)
+
+[node name="cloud 5" parent="scene transition" index="1" unique_id=59076211]
+position = Vector2(-363, 114)
+
+[node name="cloud 6" parent="scene transition" index="2" unique_id=1176790874]
+position = Vector2(-343, -314)
+
+[node name="cloud 1" parent="scene transition" index="3" unique_id=1279682879]
+position = Vector2(0, 0)
+
+[node name="cloud 2" parent="scene transition" index="4" unique_id=124164635]
+position = Vector2(187, -465)
+
+[node name="cloud 3" parent="scene transition" index="5" unique_id=1123446389]
+position = Vector2(550, 236)
+
+[node name="cloud 4" parent="scene transition" index="6" unique_id=1745735194]
+position = Vector2(1161, -488)
+
+[node name="cloud 7" parent="scene transition" index="7" unique_id=755250396]
+position = Vector2(1157, 33)
+
+[node name="cloud 8" parent="scene transition" index="8" unique_id=1694017532]
+position = Vector2(-575, -249)
+
+[node name="click sound effect player" type="AudioStreamPlayer2D" parent="." unique_id=1501291538]
+stream = ExtResource("6_ke0x7")
+volume_db = 20.0
+
+[editable path="scene transition"]

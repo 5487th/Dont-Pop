@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cxoad16byx55r"]
+
+[ext_resource type="Script" uid="uid://r2nq7cm0p8ma" path="res://scripts/balloon.gd" id="1_bjw4k"]
+[ext_resource type="Script" uid="uid://be8k7ptq11ljj" path="res://scripts/balloon_body.gd" id="2_bjw4k"]
+[ext_resource type="Texture2D" uid="uid://b7eto8ijkcsh0" path="res://assets/sprites/white_balloon.png" id="3_u045a"]
+[ext_resource type="Script" uid="uid://ru50r03lik1" path="res://scripts/balloon_health_manager.gd" id="4_u045a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pitwt"]
+radius = 40.04997
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rgl7y"]
+radius = 37.12142
+
+[node name="Balloon" type="Node2D" unique_id=1213558455 node_paths=PackedStringArray("ballon_visual", "balloon_movement", "balloon_health", "player_label")]
+script = ExtResource("1_bjw4k")
+ballon_visual = NodePath("Balloon_body/Sprite2D")
+balloon_movement = NodePath("Balloon_body")
+balloon_health = NodePath("health manager")
+player_label = NodePath("")
+
+[node name="health manager" type="Area2D" parent="." unique_id=613539424 node_paths=PackedStringArray("ballon")]
+script = ExtResource("4_u045a")
+ballon = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="health manager" unique_id=208818381]
+shape = SubResource("CircleShape2D_pitwt")
+
+[node name="Balloon_body" type="CharacterBody2D" parent="." unique_id=860875516 node_paths=PackedStringArray("balloon")]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("2_bjw4k")
+balloon = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Balloon_body" unique_id=574743790]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_u045a")
+offset = Vector2(0, 400)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Balloon_body" unique_id=1234295981]
+shape = SubResource("CircleShape2D_rgl7y")

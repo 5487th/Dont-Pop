@@ -1,0 +1,712 @@
+[gd_scene format=3 uid="uid://nqhqqugwl3fd"]
+
+[ext_resource type="FontFile" uid="uid://chfyuh5o7a27l" path="res://assets/fonts/Saira_Expanded-Regular.ttf" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://coeoxixciv75w" path="res://scripts/main menu/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://bh3udk7rb8qnu" path="res://assets/sprites/clouds/medium_white_cloud.png" id="2_8ln24"]
+[ext_resource type="Texture2D" uid="uid://b1u0vcx3x31xp" path="res://assets/sprites/clouds/elongated_white_cloud_with_bulge.png" id="2_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://cxoad16byx55r" path="res://scenes/balloon.tscn" id="4_8ln24"]
+[ext_resource type="FontFile" uid="uid://bcp64d4s2si12" path="res://assets/fonts/Roboto-Regular.ttf" id="5_8ln24"]
+[ext_resource type="Texture2D" uid="uid://b7eto8ijkcsh0" path="res://assets/sprites/white_balloon.png" id="7_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://yi1qd53vcxsp" path="res://assets/sprites/arrow.png" id="7_oa1go"]
+[ext_resource type="Script" uid="uid://b0xu41hwfbxic" path="res://scripts/main menu/color_picker.gd" id="8_5dd4i"]
+[ext_resource type="PackedScene" uid="uid://b7prx7r553ly0" path="res://scenes/scene_transition.tscn" id="10_5dd4i"]
+[ext_resource type="AudioStream" uid="uid://cr74hmxjf0lhy" path="res://assets/sfx/click.mp3" id="11_lgwnu"]
+
+[sub_resource type="Gradient" id="Gradient_jk1qb"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.33725, 0.8, 0.94902, 1, 0.26392478, 0.24434635, 0.606865, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rgl7y"]
+gradient = SubResource("Gradient_jk1qb")
+width = 256
+height = 256
+fill_from = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rgl7y"]
+font = ExtResource("1_l6cm7")
+font_size = 128
+outline_size = 15
+
+[sub_resource type="Gradient" id="Gradient_5dd4i"]
+offsets = PackedFloat32Array(0.0121951215)
+colors = PackedColorArray(1, 1, 1, 0.22352941)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_slnsl"]
+gradient = SubResource("Gradient_5dd4i")
+width = 512
+height = 128
+
+[sub_resource type="Gradient" id="Gradient_lgwnu"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.76862746, 0.76862746, 0.76862746, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ekxnf"]
+gradient = SubResource("Gradient_lgwnu")
+width = 512
+height = 128
+fill_to = Vector2(0.99415207, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pitwt"]
+font = ExtResource("5_8ln24")
+font_size = 96
+outline_size = 5
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bdpn"]
+bg_color = Color(0.7764706, 0.7764706, 0.7764706, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_df0dx"]
+font = ExtResource("5_8ln24")
+font_size = 64
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slnsl"]
+bg_color = Color(0.7764706, 0.7764706, 0.7764706, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0rl2"]
+bg_color = Color(0.7764706, 0.7764706, 0.7764706, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jb5fw"]
+font = ExtResource("5_8ln24")
+font_size = 128
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="main_menu" type="Node2D" unique_id=1290750272 node_paths=PackedStringArray("play_button", "start_button", "back_button", "transition_exit", "transition_enter", "main_screen", "customization_screen", "click_sound_player")]
+script = ExtResource("1_rtw2f")
+play_button = NodePath("main screen/play button/button")
+start_button = NodePath("balloon customization screen/HBoxContainer/VBoxContainer/start button/button")
+back_button = NodePath("balloon customization screen/back button")
+transition_exit = NodePath("scene transition exit")
+transition_enter = NodePath("scene transition enter")
+main_screen = NodePath("main screen")
+customization_screen = NodePath("balloon customization screen")
+click_sound_player = NodePath("click sound player")
+
+[node name="main screen" type="CanvasLayer" parent="." unique_id=1867218046]
+layer = -1
+
+[node name="background" type="Control" parent="main screen" unique_id=1272313435]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="main screen/background" unique_id=908291674]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_rgl7y")
+
+[node name="clouds" type="Control" parent="main screen/background" unique_id=1021026209]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cloude_1" type="TextureRect" parent="main screen/background/clouds" unique_id=1542586454]
+layout_mode = 0
+offset_left = 936.99994
+offset_top = 312.99997
+offset_right = 2857.0
+offset_bottom = 953.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_bqqt6")
+
+[node name="cloude_2" type="TextureRect" parent="main screen/background/clouds" unique_id=497711195]
+layout_mode = 0
+offset_left = 1250.0
+offset_top = 286.0
+offset_right = 3170.0
+offset_bottom = 926.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_bqqt6")
+
+[node name="cloude_3" type="TextureRect" parent="main screen/background/clouds" unique_id=516057209]
+layout_mode = 0
+offset_left = 311.0
+offset_top = 528.0
+offset_right = 2231.0
+offset_bottom = 1472.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_8ln24")
+
+[node name="cloude_4" type="TextureRect" parent="main screen/background/clouds" unique_id=1590403680]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 355.0
+offset_right = 2049.0
+offset_bottom = 1299.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_8ln24")
+flip_h = true
+
+[node name="cloude_5" type="TextureRect" parent="main screen/background/clouds" unique_id=618245148]
+layout_mode = 0
+offset_left = -144.0
+offset_top = 846.00006
+offset_right = 1776.0
+offset_bottom = 1790.0
+scale = Vector2(0.5, 0.385)
+texture = ExtResource("2_bqqt6")
+
+[node name="cloude_6" type="TextureRect" parent="main screen/background/clouds" unique_id=760738549]
+layout_mode = 0
+offset_left = 1233.0
+offset_top = 129.0
+offset_right = 3153.0
+offset_bottom = 1073.0
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_8ln24")
+flip_h = true
+
+[node name="cloude_7" type="TextureRect" parent="main screen/background/clouds" unique_id=1106809933]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 656.0
+offset_right = 1953.0
+offset_bottom = 1600.0
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_8ln24")
+flip_h = true
+
+[node name="balloons" type="Node2D" parent="main screen/background" unique_id=623820401]
+
+[node name="Balloon1" parent="main screen/background/balloons" unique_id=647506703 instance=ExtResource("4_8ln24")]
+position = Vector2(1170, 728)
+scale = Vector2(0.7, 0.7)
+balloon_number = 1
+balloon_color = 2
+
+[node name="Balloon_body" parent="main screen/background/balloons/Balloon1" index="0" unique_id=860875516]
+rotation = 0.61472803
+can_move = false
+tilt = false
+
+[node name="Balloon" parent="main screen/background/balloons" unique_id=1213558455 instance=ExtResource("4_8ln24")]
+position = Vector2(541, 360)
+scale = Vector2(1.3, 1.3)
+
+[node name="Balloon_body" parent="main screen/background/balloons/Balloon" index="0" unique_id=860875516]
+rotation = 0.61472803
+can_move = false
+tilt = false
+
+[node name="tittle" type="Label" parent="main screen" unique_id=190315230]
+anchors_preset = -1
+offset_left = 60.0
+offset_top = 45.0
+offset_right = 723.0
+offset_bottom = 248.0
+text = "Dont Pop!"
+label_settings = SubResource("LabelSettings_rgl7y")
+
+[node name="play button" type="Control" parent="main screen" unique_id=576372244]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="button outline" type="ColorRect" parent="main screen/play button" unique_id=2122511880]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1338.0
+offset_top = 883.0
+offset_right = 1860.0
+offset_bottom = 1020.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40868774, 0.6510586, 0.8755323, 1)
+
+[node name="button" type="TextureButton" parent="main screen/play button" unique_id=1634412927]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1323.0
+offset_top = 867.0
+offset_right = 1835.0
+offset_bottom = 995.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = SubResource("GradientTexture2D_slnsl")
+texture_pressed = SubResource("GradientTexture2D_slnsl")
+texture_hover = SubResource("GradientTexture2D_ekxnf")
+
+[node name="Label" type="Label" parent="main screen/play button/button" unique_id=1990731852]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+label_settings = SubResource("LabelSettings_pitwt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="balloon customization screen" type="CanvasLayer" parent="." unique_id=1082569995]
+layer = -1
+visible = false
+
+[node name="background" type="Control" parent="balloon customization screen" unique_id=1142959782]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="balloon customization screen/background" unique_id=2128751946]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_rgl7y")
+
+[node name="clouds" type="Control" parent="balloon customization screen/background" unique_id=1320628428]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cloude_1" type="TextureRect" parent="balloon customization screen/background/clouds" unique_id=614478736]
+layout_mode = 0
+offset_left = 816.99994
+offset_top = 241.00003
+offset_right = 2737.0
+offset_bottom = 881.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_bqqt6")
+
+[node name="cloude_2" type="TextureRect" parent="balloon customization screen/background/clouds" unique_id=339568301]
+layout_mode = 0
+offset_left = 1255.0
+offset_top = -109.0
+offset_right = 3175.0
+offset_bottom = 531.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_bqqt6")
+
+[node name="cloude_3" type="TextureRect" parent="balloon customization screen/background/clouds" unique_id=1032614626]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 919.0
+offset_right = 2600.0
+offset_bottom = 1863.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_8ln24")
+
+[node name="cloude_4" type="TextureRect" parent="balloon customization screen/background/clouds" unique_id=526525136]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 283.0
+offset_right = 1985.0
+offset_bottom = 1227.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_8ln24")
+flip_h = true
+
+[node name="cloude_5" type="TextureRect" parent="balloon customization screen/background/clouds" unique_id=2003209668]
+layout_mode = 0
+offset_left = 1673.9999
+offset_top = 447.0
+offset_right = 3594.0
+offset_bottom = 1390.9999
+scale = Vector2(0.45, 0.347)
+texture = ExtResource("2_bqqt6")
+
+[node name="cloude_6" type="TextureRect" parent="balloon customization screen/background/clouds" unique_id=1392040951]
+layout_mode = 0
+offset_left = 1233.0
+offset_top = 129.0
+offset_right = 3153.0
+offset_bottom = 1073.0
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_8ln24")
+flip_h = true
+
+[node name="cloude_7" type="TextureRect" parent="balloon customization screen/background/clouds" unique_id=106005792]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 656.0
+offset_right = 1953.0
+offset_bottom = 1600.0
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_8ln24")
+flip_h = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="balloon customization screen" unique_id=1957903070]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -801.0
+offset_top = -429.0
+offset_right = 801.0
+offset_bottom = 429.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/separation = 40
+
+[node name="balloon 1" type="VBoxContainer" parent="balloon customization screen/HBoxContainer" unique_id=618909571]
+custom_minimum_size = Vector2(300, 568)
+layout_mode = 2
+
+[node name="tittle" type="Panel" parent="balloon customization screen/HBoxContainer/balloon 1" unique_id=1935083406]
+custom_minimum_size = Vector2(500, 130)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bdpn")
+
+[node name="Label" type="Label" parent="balloon customization screen/HBoxContainer/balloon 1/tittle" unique_id=454804708]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Balloon 1"
+label_settings = SubResource("LabelSettings_df0dx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="balloon display container" type="Panel" parent="balloon customization screen/HBoxContainer/balloon 1" unique_id=1383059605]
+custom_minimum_size = Vector2(80, 600)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slnsl")
+
+[node name="balloon display" type="TextureRect" parent="balloon customization screen/HBoxContainer/balloon 1/balloon display container" unique_id=1041445876]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -823.0
+offset_right = 400.0
+offset_bottom = 823.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("7_jk1qb")
+
+[node name="color picker" type="Panel" parent="balloon customization screen/HBoxContainer/balloon 1" unique_id=817586594 node_paths=PackedStringArray("balloon_display", "color_display", "other_color_picker", "left_button", "right_button", "click_sound_player")]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m0rl2")
+script = ExtResource("8_5dd4i")
+balloon_display = NodePath("../balloon display container/balloon display")
+color_display = NodePath("HBoxContainer/Color display")
+other_color_picker = NodePath("../../balloon 2/color picker")
+left_button = NodePath("HBoxContainer/left")
+right_button = NodePath("HBoxContainer/right")
+click_sound_player = NodePath("../../../../click sound player")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="balloon customization screen/HBoxContainer/balloon 1/color picker" unique_id=750242033]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="left" type="Button" parent="balloon customization screen/HBoxContainer/balloon 1/color picker/HBoxContainer" unique_id=1121985620]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/icon_hover_color = Color(0.92099476, 0.9209946, 0.9209946, 1)
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="balloon customization screen/HBoxContainer/balloon 1/color picker/HBoxContainer/left" unique_id=296629993]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="balloon customization screen/HBoxContainer/balloon 1/color picker/HBoxContainer/left/MarginContainer" unique_id=1562617918]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_oa1go")
+expand_mode = 2
+flip_h = true
+
+[node name="Color display" type="ColorRect" parent="balloon customization screen/HBoxContainer/balloon 1/color picker/HBoxContainer" unique_id=1989099162]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="right" type="Button" parent="balloon customization screen/HBoxContainer/balloon 1/color picker/HBoxContainer" unique_id=59315533]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="balloon customization screen/HBoxContainer/balloon 1/color picker/HBoxContainer/right" unique_id=396910013]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="balloon customization screen/HBoxContainer/balloon 1/color picker/HBoxContainer/right/MarginContainer" unique_id=1681183658]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_oa1go")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="balloon customization screen/HBoxContainer" unique_id=1288533513]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="balloon customization screen/HBoxContainer/VBoxContainer" unique_id=334357626]
+custom_minimum_size = Vector2(500, 568)
+layout_mode = 2
+size_flags_vertical = 1
+text = "vs
+"
+label_settings = SubResource("LabelSettings_jb5fw")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="start button" type="Control" parent="balloon customization screen/HBoxContainer/VBoxContainer" unique_id=1947219717]
+custom_minimum_size = Vector2(522, 138)
+layout_mode = 2
+
+[node name="button outline" type="ColorRect" parent="balloon customization screen/HBoxContainer/VBoxContainer/start button" unique_id=68992549]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40868774, 0.6510586, 0.8755323, 1)
+
+[node name="button" type="TextureButton" parent="balloon customization screen/HBoxContainer/VBoxContainer/start button" unique_id=436351868]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("GradientTexture2D_slnsl")
+texture_pressed = SubResource("GradientTexture2D_slnsl")
+texture_hover = SubResource("GradientTexture2D_ekxnf")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="balloon customization screen/HBoxContainer/VBoxContainer/start button/button" unique_id=673685990]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+label_settings = SubResource("LabelSettings_pitwt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="balloon 2" type="VBoxContainer" parent="balloon customization screen/HBoxContainer" unique_id=858262128]
+custom_minimum_size = Vector2(300, 568)
+layout_mode = 2
+
+[node name="tittle" type="Panel" parent="balloon customization screen/HBoxContainer/balloon 2" unique_id=1162837819]
+custom_minimum_size = Vector2(500, 130)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bdpn")
+
+[node name="Label" type="Label" parent="balloon customization screen/HBoxContainer/balloon 2/tittle" unique_id=431279994]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Balloon 2"
+label_settings = SubResource("LabelSettings_df0dx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="balloon display container" type="Panel" parent="balloon customization screen/HBoxContainer/balloon 2" unique_id=1178893050]
+custom_minimum_size = Vector2(80, 600)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slnsl")
+
+[node name="balloon display" type="TextureRect" parent="balloon customization screen/HBoxContainer/balloon 2/balloon display container" unique_id=1026996119]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -823.0
+offset_right = 400.0
+offset_bottom = 823.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("7_jk1qb")
+
+[node name="color picker" type="Panel" parent="balloon customization screen/HBoxContainer/balloon 2" unique_id=1132943724 node_paths=PackedStringArray("balloon_display", "color_display", "other_color_picker", "left_button", "right_button", "click_sound_player")]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m0rl2")
+script = ExtResource("8_5dd4i")
+balloon_number = 1
+current_color = 2
+balloon_display = NodePath("../balloon display container/balloon display")
+color_display = NodePath("HBoxContainer/Color display")
+other_color_picker = NodePath("../../balloon 1/color picker")
+left_button = NodePath("HBoxContainer/left")
+right_button = NodePath("HBoxContainer/right")
+click_sound_player = NodePath("../../../../click sound player")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="balloon customization screen/HBoxContainer/balloon 2/color picker" unique_id=200754829]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="left" type="Button" parent="balloon customization screen/HBoxContainer/balloon 2/color picker/HBoxContainer" unique_id=1437553471]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="balloon customization screen/HBoxContainer/balloon 2/color picker/HBoxContainer/left" unique_id=1859145188]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="balloon customization screen/HBoxContainer/balloon 2/color picker/HBoxContainer/left/MarginContainer" unique_id=1874651225]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_oa1go")
+expand_mode = 2
+flip_h = true
+
+[node name="Color display" type="ColorRect" parent="balloon customization screen/HBoxContainer/balloon 2/color picker/HBoxContainer" unique_id=1030713990]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="right" type="Button" parent="balloon customization screen/HBoxContainer/balloon 2/color picker/HBoxContainer" unique_id=292757377]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="balloon customization screen/HBoxContainer/balloon 2/color picker/HBoxContainer/right" unique_id=211847989]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="balloon customization screen/HBoxContainer/balloon 2/color picker/HBoxContainer/right/MarginContainer" unique_id=1729034494]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_oa1go")
+expand_mode = 2
+
+[node name="back button" type="Button" parent="balloon customization screen" unique_id=999600164]
+offset_left = 130.0
+offset_top = 33.0
+offset_right = 394.0
+offset_bottom = 297.0
+scale = Vector2(-0.395, 0.395)
+theme_override_colors/icon_hover_color = Color(0.8891468, 0.8891468, 0.88914675, 1)
+icon = ExtResource("7_oa1go")
+flat = true
+
+[node name="scene transition exit" parent="." unique_id=429413691 instance=ExtResource("10_5dd4i")]
+position = Vector2(961, 540)
+
+[node name="scene transition enter" parent="." unique_id=1135860017 instance=ExtResource("10_5dd4i")]
+visible = false
+position = Vector2(961, 540)
+
+[node name="cloud 5" parent="scene transition enter" index="1" unique_id=59076211]
+position = Vector2(-363, 114)
+
+[node name="cloud 6" parent="scene transition enter" index="2" unique_id=1176790874]
+position = Vector2(-343, -314)
+
+[node name="cloud 1" parent="scene transition enter" index="3" unique_id=1279682879]
+position = Vector2(0, 0)
+
+[node name="cloud 2" parent="scene transition enter" index="4" unique_id=124164635]
+position = Vector2(187, -465)
+
+[node name="cloud 3" parent="scene transition enter" index="5" unique_id=1123446389]
+position = Vector2(550, 236)
+
+[node name="cloud 4" parent="scene transition enter" index="6" unique_id=1745735194]
+position = Vector2(1161, -488)
+
+[node name="cloud 7" parent="scene transition enter" index="7" unique_id=755250396]
+position = Vector2(1157, 33)
+
+[node name="cloud 8" parent="scene transition enter" index="8" unique_id=1694017532]
+position = Vector2(-575, -249)
+
+[node name="click sound player" type="AudioStreamPlayer2D" parent="." unique_id=15567493]
+stream = ExtResource("11_lgwnu")
+volume_db = 20.0
+
+[editable path="main screen/background/balloons/Balloon1"]
+[editable path="main screen/background/balloons/Balloon"]
+[editable path="scene transition enter"]

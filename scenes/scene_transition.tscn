@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://b7prx7r553ly0"]
+
+[ext_resource type="Texture2D" uid="uid://bh3udk7rb8qnu" path="res://assets/sprites/clouds/medium_white_cloud.png" id="1_2sgj6"]
+[ext_resource type="Script" uid="uid://bj0pjvahodt5w" path="res://scripts/scene_transition.gd" id="1_hgfgv"]
+[ext_resource type="Texture2D" uid="uid://cbpcvgqmp865t" path="res://assets/sprites/clouds/small_white_cloud.png" id="2_hgfgv"]
+[ext_resource type="Texture2D" uid="uid://b1u0vcx3x31xp" path="res://assets/sprites/clouds/elongated_white_cloud_with_bulge.png" id="3_85h84"]
+
+[sub_resource type="Animation" id="Animation_2sgj6"]
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cloud 5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2993, 114), Vector2(-363, 114)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cloud 6:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2973, -314), Vector2(-343, -314)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cloud 1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2630, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("cloud 2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2443, -465), Vector2(187, -465)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("cloud 3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2080, 236), Vector2(550, 236)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("cloud 4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1469, -488), Vector2(1161, -488)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("cloud 7:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1473, 33), Vector2(1157, 33)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("cloud 8:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-3205, -249), Vector2(-575, -249)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_85h84"]
+_data = {
+&"fade_in": SubResource("Animation_2sgj6")
+}
+
+[node name="scene transition" type="Node2D" unique_id=429413691 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_hgfgv")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=79892085]
+libraries/ = SubResource("AnimationLibrary_85h84")
+
+[node name="cloud 5" type="Node2D" parent="." unique_id=59076211]
+position = Vector2(-2993, 114)
+
+[node name="cloud 1" type="Sprite2D" parent="cloud 5" unique_id=1990506317]
+modulate = Color(0.44705883, 0.44705883, 0.44705883, 0.3764706)
+z_index = 5
+position = Vector2(-355, 68)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 2" type="Sprite2D" parent="cloud 5" unique_id=787356277]
+z_index = 5
+position = Vector2(-332, 51)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 6" type="Node2D" parent="." unique_id=1176790874]
+position = Vector2(-2973, -314)
+
+[node name="cloud 1" type="Sprite2D" parent="cloud 6" unique_id=643305853]
+modulate = Color(0.44705883, 0.44705883, 0.44705883, 0.3764706)
+z_index = 5
+position = Vector2(-355, 68)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 2" type="Sprite2D" parent="cloud 6" unique_id=1432456241]
+z_index = 5
+position = Vector2(-332, 51)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 1" type="Node2D" parent="." unique_id=1279682879]
+position = Vector2(-2630, 0)
+
+[node name="cloud 1" type="Sprite2D" parent="cloud 1" unique_id=2055827786]
+modulate = Color(0.44705883, 0.44705883, 0.44705883, 0.3764706)
+z_index = 5
+position = Vector2(-355, 68)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("2_hgfgv")
+
+[node name="cloud 2" type="Sprite2D" parent="cloud 1" unique_id=2037314401]
+z_index = 5
+position = Vector2(-332, 51)
+texture = ExtResource("2_hgfgv")
+
+[node name="cloud 2" type="Node2D" parent="." unique_id=124164635]
+position = Vector2(-2443, -465)
+
+[node name="cloud 1" type="Sprite2D" parent="cloud 2" unique_id=2096973248]
+modulate = Color(0.44705883, 0.44705883, 0.44705883, 0.3764706)
+z_index = 5
+position = Vector2(-355, 68)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("3_85h84")
+
+[node name="cloud 2" type="Sprite2D" parent="cloud 2" unique_id=506306218]
+z_index = 5
+position = Vector2(-332, 51)
+texture = ExtResource("3_85h84")
+
+[node name="cloud 3" type="Node2D" parent="." unique_id=1123446389]
+position = Vector2(-2080, 236)
+
+[node name="cloud 1" type="Sprite2D" parent="cloud 3" unique_id=1508050002]
+modulate = Color(0.44705883, 0.44705883, 0.44705883, 0.3764706)
+z_index = 5
+position = Vector2(-355, 68)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 2" type="Sprite2D" parent="cloud 3" unique_id=769802131]
+z_index = 5
+position = Vector2(-332, 51)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 4" type="Node2D" parent="." unique_id=1745735194]
+position = Vector2(-1469, -488)
+
+[node name="cloud 1" type="Sprite2D" parent="cloud 4" unique_id=1892495131]
+modulate = Color(0.44705883, 0.44705883, 0.44705883, 0.3764706)
+z_index = 5
+position = Vector2(-355, 68)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 2" type="Sprite2D" parent="cloud 4" unique_id=1944378611]
+z_index = 5
+position = Vector2(-332, 51)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 7" type="Node2D" parent="." unique_id=755250396]
+position = Vector2(-1473, 33)
+
+[node name="cloud 1" type="Sprite2D" parent="cloud 7" unique_id=120018968]
+modulate = Color(0.44705883, 0.44705883, 0.44705883, 0.3764706)
+z_index = 5
+position = Vector2(-355, 68)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 2" type="Sprite2D" parent="cloud 7" unique_id=1056336343]
+z_index = 5
+position = Vector2(-332, 51)
+texture = ExtResource("1_2sgj6")
+
+[node name="cloud 8" type="Node2D" parent="." unique_id=1694017532]
+position = Vector2(-3205, -249)
+
+[node name="cloud 1" type="Sprite2D" parent="cloud 8" unique_id=1969063579]
+modulate = Color(0.44705883, 0.44705883, 0.44705883, 0.3764706)
+z_index = 5
+position = Vector2(-355, 68)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("2_hgfgv")
+
+[node name="cloud 2" type="Sprite2D" parent="cloud 8" unique_id=1813108025]
+z_index = 5
+position = Vector2(-332, 51)
+texture = ExtResource("2_hgfgv")

@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://bsgjcjl21rk5x"]
+
+[ext_resource type="Script" uid="uid://rxi0a2e6hk1u" path="res://scripts/game scene/hazard.gd" id="1_75mop"]
+[ext_resource type="Texture2D" uid="uid://dhpu257q65c31" path="res://assets/sprites/square.png" id="1_881dy"]
+[ext_resource type="Texture2D" uid="uid://dg0gvyonjenxf" path="res://assets/sprites/triangle.png" id="2_t445x"]
+
+[sub_resource type="GDScript" id="GDScript_pitwt"]
+resource_name = "wind gust"
+script/source = "extends Area2D
+
+@export var direction:Vector2 = Vector2.LEFT
+@export var strength:float = 10.0
+
+@warning_ignore(\"unused_parameter\")
+func _physics_process(delta: float) -> void:
+	for body in get_overlapping_bodies():
+		if body is BalloonMovementManager:
+			var player_movement:BalloonMovementManager = body
+			player_movement.velocity += direction * strength * delta
+			
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgl7y"]
+size = Vector2(1652, 998)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=642022172]
+collision_layer = 8
+collision_mask = 2
+sync_to_physics = false
+script = ExtResource("1_75mop")
+vertical_length = 1365.0
+
+[node name="wall" type="CollisionPolygon2D" parent="." unique_id=179094814]
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-960, -540, -960, 568, -960, 696, -703, 568, -589, 512, -703, 457, -588, 402, -704, 346, -588, 290, -703, 235, -588, 178, -705, 123, -588, 67, -702, 13, -589, -45, -703, -99, -586, -153, -704, -209, -587, -265, -701, -318, -589, -373, -704, -429, -588, -484, -704, -540, -960, -668)
+
+[node name="wind area" type="Area2D" parent="." unique_id=1377276203]
+collision_layer = 0
+collision_mask = 2
+script = SubResource("GDScript_pitwt")
+direction = Vector2(1, 0)
+strength = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wind area" unique_id=669531823]
+visible = false
+position = Vector2(-134, 7)
+shape = SubResource("RectangleShape2D_rgl7y")
+
+[node name="ColorRect" type="ColorRect" parent="wind area" unique_id=1402600030]
+offset_left = -958.0
+offset_top = -534.0
+offset_right = 699.0
+offset_bottom = 541.0
+color = Color(0.09019608, 0.5686275, 0.7647059, 0.4627451)
+
+[node name="Sprite2D" type="Sprite2D" parent="wind area/ColorRect" unique_id=1923180011]
+modulate = Color(0.24313726, 0.49411765, 0.59607846, 0.4627451)
+position = Vector2(886, 537)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spiked wall2" type="Sprite2D" parent="." unique_id=609307194]
+position = Vector2(832, 14)
+scale = Vector2(-0.5, -2.164)
+texture = ExtResource("1_881dy")
+
+[node name="spike 1" type="Sprite2D" parent="spiked wall2" unique_id=793145597]
+position = Vector2(370.455, -230.289)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 2" type="Sprite2D" parent="spiked wall2" unique_id=987953375]
+position = Vector2(369.99988, -178.8303)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 3" type="Sprite2D" parent="spiked wall2" unique_id=525209301]
+position = Vector2(369.99988, -128.4621)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 4" type="Sprite2D" parent="spiked wall2" unique_id=1871858825]
+position = Vector2(369.99988, -77.16966)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 5" type="Sprite2D" parent="spiked wall2" unique_id=1334725748]
+position = Vector2(369.99988, -26.801434)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 6" type="Sprite2D" parent="spiked wall2" unique_id=1460700601]
+position = Vector2(369.99988, 24.490986)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 7" type="Sprite2D" parent="spiked wall2" unique_id=338119924]
+position = Vector2(369.99988, 76.24549)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 8" type="Sprite2D" parent="spiked wall2" unique_id=1151753747]
+position = Vector2(369.99988, 127.53794)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 9" type="Sprite2D" parent="spiked wall2" unique_id=272005853]
+position = Vector2(369.99988, 179.29247)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 10" type="Sprite2D" parent="spiked wall2" unique_id=979055339]
+position = Vector2(369.99988, 230.12276)
+scale = Vector2(0.45, 0.10039711)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 11" type="Sprite2D" parent="spiked wall2" unique_id=321129266]
+position = Vector2(113.74994, 230.12277)
+scale = Vector2(1.4443358, 0.33211917)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="spike 12" type="Sprite2D" parent="spiked wall2" unique_id=1584515868]
+position = Vector2(113.75, -230.123)
+scale = Vector2(1.4443358, 0.33211917)
+texture = ExtResource("2_t445x")
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=817474231]
